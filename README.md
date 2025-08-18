@@ -16,8 +16,8 @@
 
 ## 👥 Integrantes del Equipo
 
-- **César Nikola Camac Meléndez**  
-- **Jefferson Rosas Chambilla**  
+- **César Nikolas Camac Meléndez**  
+- **Jefferson Ronaldihño Rosas Chambilla**  
 
 ---
 
