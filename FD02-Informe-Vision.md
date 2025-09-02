@@ -20,7 +20,7 @@ Integrantes:
 
 **César Nikolas Camac Meléndez (2022074262)**
 
-**Cefferson Ronaldihño Rosas Chambilla (2022074262)**
+**Jefferson Rosas Chambilla (2021072618)**
 
 **Tacna – Perú**
 
