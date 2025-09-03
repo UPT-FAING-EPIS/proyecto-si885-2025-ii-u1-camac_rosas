@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . /app
 
 # Instalar dependencias
-RUN pip install --no-cache-dir telethon pandas
+RUN pip install --no-cache-dir telethon pandas beautifulsoup4 requests
 
 # Comando por defecto para ejecutar el script principal
 CMD ["python", "main.py"]
