@@ -1,8 +1,8 @@
 <center>
 
-[comment]: <img src="./media/logo-upt.png" style="width:1.088in;height:1.46256in" alt="escudo.png" />
+[comment]: <img src="../media/logo-upt.png" style="width:1.088in;height:1.46256in" alt="escudo.png" />
 
-![./media/logo-upt.png](./media/logo-upt.png)
+![../media/logo-upt.png](../media/logo-upt.png)
 
 **UNIVERSIDAD PRIVADA DE TACNA**
 
