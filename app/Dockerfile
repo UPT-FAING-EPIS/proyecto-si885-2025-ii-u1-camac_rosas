@@ -11,7 +11,7 @@ COPY . /app
 RUN apt-get update && \
     apt-get install -y chromium-driver chromium && \
     rm -rf /var/lib/apt/lists/*
-RUN pip install --no-cache-dir telethon pandas beautifulsoup4 requests selenium psycopg2-binary
+RUN pip install --no-cache-dir telethon pandas beautifulsoup4 requests selenium psycopg2-binary yt_dlp
 
 # Comando por defecto para ejecutar el script principal
 CMD ["python", "main.py"]
