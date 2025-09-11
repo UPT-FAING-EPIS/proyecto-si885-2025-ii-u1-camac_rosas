@@ -186,8 +186,38 @@ def scrap_linkedin(url):
     }
 
 def scrap_youtube(url):
-    # Aquí iría el scraping específico para YouTube
-    return {}
+    import yt_dlp
+    try:
+        ydl_opts = {
+            'extract_flat': False,
+            'quiet': True,
+        }
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info(url, download=False)
+            autor = info.get('uploader')
+            likes = info.get('like_count', 0)
+            comentarios = info.get('comment_count', 0)
+            visitas = info.get('view_count', 0)
+            fecha_publicacion = info.get('upload_date')
+            return {
+                'autor_contenido': autor,
+                'likes': likes,
+                'comentarios': comentarios,
+                'compartidos': None,
+                'visitas': visitas,
+                'fecha_publicacion': fecha_publicacion,
+                'tipo_contenido': 'video',
+            }
+    except Exception:
+        return {
+            'autor_contenido': None,
+            'likes': None,
+            'comentarios': None,
+            'compartidos': None,
+            'visitas': None,
+            'fecha_publicacion': None,
+            'tipo_contenido': 'video',
+        }
 
 def scrap_tiktok(url):
     # Aquí iría el scraping específico para TikTok
@@ -359,7 +389,7 @@ def insertar_enlace_pg(datos):
     # Verificar campos obligatorios
     requeridos = ['autor_contenido', 'likes', 'comentarios', 'fecha_publicacion']
     if not all(datos.get(campo) is not None for campo in requeridos):
-        print(f"Datos incompletos, se omite: {datos.get('url')}")
+        print(f"\nDatos incompletos, se omite: {datos.get('url')}")
         return False
     try:
         cursor.execute('''
@@ -377,7 +407,7 @@ def insertar_enlace_pg(datos):
             datos.get('visitas')
         ))
         conn.commit()
-        print(f"Enlace insertado: {datos.get('url')}")
+        print(f"\n\nEnlace insertado: {datos.get('url')}")
         return True
     except Exception as e:
         print(f"Error al insertar: {e}")
