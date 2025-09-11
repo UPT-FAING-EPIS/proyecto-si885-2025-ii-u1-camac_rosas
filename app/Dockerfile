@@ -8,7 +8,10 @@ WORKDIR /app
 COPY . /app
 
 # Instalar dependencias
-RUN pip install --no-cache-dir telethon pandas beautifulsoup4 requests
+RUN apt-get update && \
+    apt-get install -y chromium-driver chromium && \
+    rm -rf /var/lib/apt/lists/*
+RUN pip install --no-cache-dir telethon pandas beautifulsoup4 requests selenium
 
 # Comando por defecto para ejecutar el script principal
 CMD ["python", "main.py"]

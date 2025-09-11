@@ -9,6 +9,9 @@ import re
 import requests
 from bs4 import BeautifulSoup
 import json
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
 
 # --- Configuración ---
 api_id = '21456067'         # Reemplaza con tu API ID
@@ -281,23 +284,36 @@ def scrap_devto(url):
 
     # 3) Fallback directo a spans de la UI (ids: reaction_total_count, reaction-number-comment)
     if likes is None:
-        # Primero, intentar con un contador específico de likes si existe
-        span_like_btn = soup.find('span', id='reaction-number-like') or soup.select_one('#reaction-number-like')
+        span_like_btn = soup.find('span', id='reaction_total_count') or soup.select_one('#reaction_total_count')
         if span_like_btn:
             raw = span_like_btn.get('data-count') or span_like_btn.get_text(strip=True)
             likes = _parse_count(raw)
-        # Si no, usar el total visible en cabecera
-        if likes is None:
-            span_likes = soup.find('span', id='reaction_total_count') or soup.select_one('#reaction_total_count')
-            if span_likes:
-                raw = span_likes.get('data-count') or span_likes.get_text(strip=True)
-                likes = _parse_count(raw)
 
     if comentarios is None:
         span_comments = soup.find('span', id='reaction-number-comment') or soup.select_one('#reaction-number-comment')
         if span_comments:
             raw = span_comments.get('data-count') or span_comments.get_text(strip=True)
             comentarios = _parse_count(raw)
+
+    # Si likes sigue siendo None, usar Selenium para obtener el valor renderizado
+    if likes is None:
+        try:
+            chrome_options = Options()
+            chrome_options.add_argument('--headless')
+            chrome_options.add_argument('--no-sandbox')
+            chrome_options.add_argument('--disable-dev-shm-usage')
+            chrome_options.add_argument('--disable-gpu')
+            chrome_options.add_argument('--window-size=1920,1080')
+            chrome_options.add_argument('--user-agent=' + headers['User-Agent'])
+            chrome_options.binary_location = "/usr/bin/chromium"
+            driver = webdriver.Chrome(options=chrome_options)
+            driver.get(url)
+            elem = driver.find_element(By.ID, 'reaction_total_count')
+            likes_text = elem.text.strip()
+            likes = _parse_count(likes_text)
+            driver.quit()
+        except Exception:
+            likes = None
 
     # Normalización de números
     likes = (int(likes) if isinstance(likes, (int, float)) else _parse_count(str(likes)) if likes is not None else None)
