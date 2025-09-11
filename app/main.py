@@ -12,6 +12,7 @@ import json
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+import psycopg2
 
 # --- Configuración ---
 api_id = '21456067'         # Reemplaza con tu API ID
@@ -23,6 +24,23 @@ group_username = -1002686196185  # Username público o ID del grupo
 # --- Conexión ---
 client = TelegramClient(session_name, api_id, api_hash)
 client.start()
+
+# --- Configuración de PostgreSQL ---
+db_config = {
+    'host': '192.168.18.24',      # Cambia si usas Docker Compose con servicio de base de datos
+    'dbname': 'telegram_links',   # Cambia por el nombre de tu base de datos
+    'user': 'postgres',       # Cambia por tu usuario
+    'password': 'epis'    # Cambia por tu contraseña
+}
+
+try:
+    conn = psycopg2.connect(**db_config)
+    cursor = conn.cursor()
+    print("Conexión a PostgreSQL exitosa.")
+except Exception as e:
+    print(f"Error al conectar a PostgreSQL: {e}")
+    conn = None
+    cursor = None
 
 # --- Extracción de enlaces ---
 print(f"Extrayendo enlaces del grupo: {group_username}")
@@ -283,12 +301,6 @@ def scrap_devto(url):
                 pass
 
     # 3) Fallback directo a spans de la UI (ids: reaction_total_count, reaction-number-comment)
-    if likes is None:
-        span_like_btn = soup.find('span', id='reaction_total_count') or soup.select_one('#reaction_total_count')
-        if span_like_btn:
-            raw = span_like_btn.get('data-count') or span_like_btn.get_text(strip=True)
-            likes = _parse_count(raw)
-
     if comentarios is None:
         span_comments = soup.find('span', id='reaction-number-comment') or soup.select_one('#reaction-number-comment')
         if span_comments:
@@ -340,11 +352,46 @@ scrapers = {
     'TikTok': scrap_tiktok,
 }
 
+def insertar_enlace_pg(datos):
+    if not cursor or not conn:
+        print("No hay conexión a la base de datos.")
+        return False
+    # Verificar campos obligatorios
+    requeridos = ['autor_contenido', 'likes', 'comentarios', 'fecha_publicacion']
+    if not all(datos.get(campo) is not None for campo in requeridos):
+        print(f"Datos incompletos, se omite: {datos.get('url')}")
+        return False
+    try:
+        cursor.execute('''
+            INSERT INTO enlaces (url, plataforma, tipo_contenido, autor_contenido, fecha_publicacion, likes, comentarios, compartidos, visitas)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+        ''', (
+            datos.get('url'),
+            datos.get('plataforma'),
+            datos.get('tipo_contenido'),
+            datos.get('autor_contenido'),
+            datos.get('fecha_publicacion'),
+            datos.get('likes'),
+            datos.get('comentarios'),
+            datos.get('compartidos'),
+            datos.get('visitas')
+        ))
+        conn.commit()
+        print(f"Enlace insertado: {datos.get('url')}")
+        return True
+    except Exception as e:
+        print(f"Error al insertar: {e}")
+        conn.rollback()
+        return False
+
 # Procesar cada enlace y aplicar el scraper correspondiente
 for url in enlaces:
     for nombre, dominios in redes.items():
         if any(dominio in url for dominio in dominios):
             datos = scrapers[nombre](url)
+            datos['url'] = url
+            datos['plataforma'] = nombre
+            insertar_enlace_pg(datos)
             print(f"\nDatos extraídos de {nombre} para el enlace:")
             print(datos)
             break
