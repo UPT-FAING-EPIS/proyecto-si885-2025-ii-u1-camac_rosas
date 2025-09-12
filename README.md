@@ -125,6 +125,3 @@ Analizar el **uso de redes sociales a partir de los enlaces compartidos en grupo
 * Realizar análisis de sentimiento de los comentarios de las publicaciones compartidas.
 * Implementar un sistema automatizado que recolecte y actualice datos en tiempo real.
 
----
-
-¿Quieres que también agregue un **diagrama de arquitectura del flujo de datos** (Telegram → Python → Base de datos → Power BI) dentro del README para que se vea más profesional?
