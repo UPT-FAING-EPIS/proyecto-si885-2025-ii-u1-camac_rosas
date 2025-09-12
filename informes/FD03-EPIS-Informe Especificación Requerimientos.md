@@ -2,7 +2,7 @@
 ## Análisis de Uso de Redes Sociales en Grupos de Telegram
 
 <p align="center">
-  <img src="./media/logo-upt.png" alt="Logo UPT" width="150">
+  <img src="../media/logo-upt.png" alt="Logo UPT" width="150">
   
   **UNIVERSIDAD PRIVADA DE TACNA**  
   **FACULTAD DE INGENIERÍA**  
