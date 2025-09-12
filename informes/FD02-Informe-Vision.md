@@ -1,14 +1,18 @@
 # Documento de Visión - Análisis de Uso de Redes Sociales en Grupos de Telegram
 
-<center>
+<p align="center">
+  <img src="../media/logo-upt.png" alt="Logo UPT" width="150">
+  
+  **UNIVERSIDAD PRIVADA DE TACNA**  
+  **FACULTAD DE INGENIERÍA**  
+  **Escuela Profesional de Ingeniería de Sistemas**
+</p>
 
-![Logo UPT](../media/logo-upt.png)
+<p align="center">
+  <strong>Proyecto: Análisis de Uso de Redes Sociales en Grupos de Telegram</strong>
+</p>
 
-**UNIVERSIDAD PRIVADA DE TACNA**  
-**FACULTAD DE INGENIERÍA**  
-**Escuela Profesional de Ingeniería de Sistemas**
-
-**Proyecto: Análisis de Uso de Redes Sociales en Grupos de Telegram**
+---
 
 **Curso:** Inteligencia de Negocios  
 **Docente:** Patrick Jose Cuadros Quiroga  
@@ -20,19 +24,17 @@
 **Tacna – Perú**  
 **2025**
 
-</center>
+---
 
-<div style="page-break-after: always; visibility: hidden">\pagebreak</div>
+## 📋 Control de Versiones
 
-## Control de Versiones
+| Versión | Hecha por | Revisada por | Aprobada por | Fecha      | Motivo            |
+|---------|-----------|--------------|--------------|------------|-------------------|
+| 1.0     | MPV       | ELV          | ARV          | 10/10/2020 | Versión Original |
 
-| Versión | Hecha por | Revisada por | Aprobada por | Fecha       | Motivo             |
-|---------|-----------|--------------|--------------|-------------|--------------------|
-| 1.0     | MPV       | ELV          | ARV          | 10/10/2020  | Versión Original  |
+---
 
-<div style="page-break-after: always; visibility: hidden">\pagebreak</div>
-
-## Índice General
+## 📑 Índice General
 
 1. [Introducción](#1-introducción)
    - 1.1. [Propósito](#11-propósito)
@@ -78,7 +80,7 @@
 
 13. [Webgrafía](#13-webgrafía)
 
-<div style="page-break-after: always; visibility: hidden">\pagebreak</div>
+---
 
 ## 1. Introducción
 
@@ -103,7 +105,7 @@ El proyecto busca analizar los enlaces compartidos en grupos de Telegram, clasif
 ### 1.5. Visión General
 El sistema permitirá identificar patrones de uso de redes sociales en grupos de Telegram, facilitando la toma de decisiones y el análisis exploratorio de datos para la comunidad universitaria.
 
-<div style="page-break-after: always; visibility: hidden">\pagebreak</div>
+---
 
 ## 2. Posicionamiento
 
@@ -113,7 +115,7 @@ El análisis de la interacción en grupos de Telegram es relevante para comprend
 ### 2.2. Definición del Problema
 Actualmente, no existe una herramienta automatizada que permita identificar qué redes sociales son más compartidas, quiénes son los usuarios más activos y qué tipo de contenido genera mayor interacción en grupos de Telegram.
 
-<div style="page-break-after: always; visibility: hidden">\pagebreak</div>
+---
 
 ## 3. Descripción de los Interesados y Usuarios
 
@@ -142,7 +144,7 @@ El sistema será utilizado en entornos académicos y de investigación, principa
 - Visualización interactiva de datos.
 - Extracción automatizada y confiable de métricas.
 
-<div style="page-break-after: always; visibility: hidden">\pagebreak</div>
+---
 
 ## 4. Vista General del Producto
 
@@ -167,7 +169,7 @@ El sistema utiliza herramientas mayormente gratuitas o de acceso académico.
 ### 4.5. Licenciamiento e Instalación
 El software se desarrollará bajo licencia académica, con instalación local en los equipos de los estudiantes.
 
-<div style="page-break-after: always; visibility: hidden">\pagebreak</div>
+---
 
 ## 5. Características del Producto
 - Extracción automática de mensajes con enlaces desde Telegram.
@@ -176,56 +178,54 @@ El software se desarrollará bajo licencia académica, con instalación local en
 - Identificación y ranking de usuarios más activos.
 - Visualización de resultados mediante dashboards en Power BI.
 
-<div style="page-break-after: always; visibility: hidden">\pagebreak</div>
+---
 
 ## 6. Restricciones
 - Acceso limitado a APIs de redes sociales.
 - Dependencia de la estructura de los mensajes de Telegram.
 - Requerimiento de credenciales para acceso a grupos y APIs.
 
-<div style="page-break-after: always; visibility: hidden">\pagebreak</div>
+---
 
 ## 7. Rangos de Calidad
 - Precisión en la extracción y clasificación de enlaces.
 - Fiabilidad en la obtención de métricas.
 - Interactividad y claridad en la visualización de datos.
 
-<div style="page-break-after: always; visibility: hidden">\pagebreak</div>
+---
 
 ## 8. Precedencia y Prioridad
 1. Extracción y clasificación de enlaces.
 2. Obtención de métricas.
 3. Visualización de resultados.
 
-<div style="page-break-after: always; visibility: hidden">\pagebreak</div>
+---
 
 ## 9. Otros Requerimientos del Producto
 - Cumplimiento de estándares legales y de privacidad de datos.
 - Uso de buenas prácticas de desarrollo y documentación.
 
-<div style="page-break-after: always; visibility: hidden">\pagebreak</div>
+---
 
 ## 10. Conclusiones
 El sistema propuesto permitirá analizar de manera eficiente el uso de redes sociales en grupos de Telegram, aportando valor académico y facilitando la toma de decisiones basada en datos.
 
-<div style="page-break-after: always; visibility: hidden">\pagebreak</div>
+---
 
 ## 11. Recomendaciones
 - Ampliar el análisis a múltiples grupos y tipos de contenido.
 - Implementar actualizaciones automáticas de datos.
 - Considerar el análisis de sentimiento en futuras versiones.
 
-<div style="page-break-after: always; visibility: hidden">\pagebreak</div>
+---
 
 ## 12. Bibliografía
 - Documentación oficial de Telethon, Power BI, PostgreSQL.
 - Artículos académicos sobre análisis de redes sociales.
 
-<div style="page-break-after: always; visibility: hidden">\pagebreak</div>
+---
 
 ## 13. Webgrafía
 - https://docs.telethon.dev/
 - https://powerbi.microsoft.com/
 - https://www.postgresql.org/
-
-<div style="page-break-after: always; visibility: hidden">\pagebreak</div>
