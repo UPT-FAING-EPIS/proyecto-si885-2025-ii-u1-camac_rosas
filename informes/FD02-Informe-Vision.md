@@ -1,4 +1,4 @@
-<center>
+mejora el md de informe de vision, que el logo se vea centrado y el resto mas ordenado y presentable: <center>
 
 [comment]: <img src="../media/logo-upt.png" style="width:1.088in;height:1.46256in" alt="escudo.png" />
 
